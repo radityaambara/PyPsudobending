@@ -120,14 +120,14 @@ class VelocityGrid:
         mid = ((b - a) / 2) + a
         gVx, gVy, gVz = self.veld(mid[0], mid[1], mid[2])
         gV = np.array([gVx, gVy, gVz])
-        # arahn
+        # n direction
         n = gV - (np.dot(gV, (b - a)) * (b - a) / (np.dot(b - a, b - a)))
         if not np.any(n) == False:
             n = n / sqrt(np.dot(n, n))
             Vmid = self.vel(mid[0], mid[1], mid[2])
             Sa = 1 / self.vel(a[0],a[1],a[2])
             Sb = 1 / self.vel(b[0],b[1],b[2])
-            # penentuan R
+            # R determination
             kL=sqrt(np.dot(b-mid,b-mid))
             kC=(Sa+Sb)/2
 
@@ -266,7 +266,11 @@ def check_dis(p1,p2,p3,p4,p5,deltn):
         dis=False
     return dis
 
-"""function for creating spatial smoothing matrix based on triangulation neighboar"""
+"""function for creating spatial smoothing matrix based on triangulation neighbour
+The input is the xyz coordinates of the node to be inverted (nx3 array). 
+Each node will be paired based on triangulation, the node will have a value of 1, 
+while the pair will have a value of -1, the rest will have a value of 0.
+"""
 def smooth_matrix(node_inv):
     def find_neighbors(pindex,triang):
         return triang.vertex_neighbor_vertices[1][
@@ -284,7 +288,10 @@ def smooth_matrix(node_inv):
 
     return np.array(mat_list)
 
-"""class for checking add node"""
+"""A class to determine whether or not to add a node in 
+the middle of a tetrahedron with threshold consideration. 
+If yes, a node will be added with the velocity value 
+from the interpolation grid."""
 class is_addnode:
     def __init__(self,hit_count,tres,node,deltn,interpP,interpS):
         self.hit_count=hit_count
