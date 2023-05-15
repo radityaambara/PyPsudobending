@@ -255,16 +255,6 @@ def vor_volumes(points):
             vol[i] = ConvexHull(v.vertices[indices]).volume
     return vol
 
-def check_dis(p1,p2,p3,p4,p5,deltn):
-    dis1=np.sqrt(np.dot((p1-p2),(p1-p2)))
-    dis2=np.sqrt(np.dot((p1-p3),(p1-p3)))
-    dis3=np.sqrt(np.dot((p1-p4),(p1-p4)))
-    dis4=np.sqrt(np.dot((p1-p5),(p1-p5)))
-    if dis1>=deltn and dis2>=deltn and dis3>=deltn and dis4>=deltn:
-        dis=True
-    else:
-        dis=False
-    return dis
 
 """function for creating spatial smoothing matrix based on triangulation neighbour
 The input is the xyz coordinates of the node to be inverted (nx3 array). 
