@@ -19,7 +19,7 @@ class VelocityGrid:
     irreguler xyz velocity data into reguler xnode,ynode,znode grid.
 
     deltn=space between regular node
-    delt=maximum distance in each seismic ray
+    delt=maximum point distance in each seismic ray
     iter1 & iter2 = iteration number for psudo-bending
     tmin = error minimum for psudo-bending
     """
